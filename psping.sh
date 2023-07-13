@@ -2,7 +2,6 @@
 
 COUNT=-1
 TIME=1
-PROCESS_COUNT=0
 TIMEOUT_TIME=1
 USER=''
 
@@ -19,23 +18,23 @@ USER=''
 while getopts "c:t:u:i:" opt; do
     case $opt in
         c)
-        if [[ $OPTARG =~ ^[0-9]+$ ]]; then
-            COUNT=$OPTARG
-        fi
+            if [[ $OPTARG =~ ^[0-9]+$ ]]; then
+                COUNT=$OPTARG
+            fi
             ;;
         t) 
-        if [[ $OPTARG =~ ^[0-9]+$ ]]; then
-            TIME=$OPTARG
-        fi 
+            if [[ $OPTARG =~ ^[0-9]+$ ]]; then
+                TIME=$OPTARG
+            fi 
         ;;
         u) 
             USER=$OPTARG
         ;;  
         i) 
-        if [[ $OPTARG =~ ^[0-9]+$ ]]; then
-        TIMEOUT_TIME=$OPTARG
-        fi
-        timeout $TIMEOUT_TIME &
+            if [[ $OPTARG =~ ^[0-9]+$ ]]; then
+                TIMEOUT_TIME=$OPTARG
+            fi
+            timeout $TIMEOUT_TIME &
         ;;   
         *)
             echo "Invalid option: -$opt"
