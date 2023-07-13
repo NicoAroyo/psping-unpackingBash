@@ -56,7 +56,9 @@ traverse() {
             if [[ "$RECURSIVE" == true ]]; then 
                 traverse "$archive"
             else 
+                if [[ "$VERBOSE" == true ]]; then
                 echo "ignoring $archive"
+                fi
             fi 
         fi
     done
@@ -82,9 +84,8 @@ shift $((OPTIND - 1))
 for archive in "$@"; do
     if [ -f "$archive" ]; then   
         unpack "$archive"
-    elif [ -d "$archive" ]; then
-        
-            traverse "$archive"
+    elif [ -d "$archive" ]; then 
+        traverse "$archive"
     fi
 done
 
